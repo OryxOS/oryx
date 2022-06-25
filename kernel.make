@@ -6,7 +6,7 @@ kernel:
 	cd kernel && make
 
 release-amd64: kernel
-	cp kernel/oryx.kernel fs-root/core/oryx.kernel
+	cp kernel/kernel.elf fs-root/core/kernel.elf
 
 	cp resource/oryx.hdd.part oryx-amd64.hdd
 	cp resource/uefi-tmp.hdd uefi-tmp.hdd
@@ -15,7 +15,7 @@ release-amd64: kernel
 	mmd -i uefi-tmp.hdd efi/boot
 	mmd -i uefi-tmp.hdd core
 
-	mcopy -i uefi-tmp.hdd fs-root/core/oryx.kernel ::core/oryx.kernel 
+	mcopy -i uefi-tmp.hdd fs-root/core/kernel.elf ::core/kernel.elf 
 	mcopy -i uefi-tmp.hdd fs-root/efi/boot/bootx64.efi ::efi/boot/bootx64.efi 
 	mcopy -i uefi-tmp.hdd fs-root/limine.cfg ::limine.cfg
 

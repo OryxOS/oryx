@@ -11,20 +11,22 @@ git clone https://github.com/OryxOS/kernel ../kernel
 ## Limine ##
 git clone https://github.com/limine-bootloader/limine.git ../depend --branch=v2.27-binary --depth=1 
 
-## Image File ##
+## Image file ##
 dd if=/dev/zero of=../resource/oryx.hdd.part bs=512 count=131072
 parted ../resource/oryx.hdd.part -s -a minimal mklabel gpt 
 parted ../resource/oryx.hdd.part -s -a minimal mkpart EFI FAT16 2048s 100% 
 parted ../resource/oryx.hdd.part -s -a minimal toggle 1 boot
 
-## Temporary Image File ##
+## Temporary image file ##
 dd if=/dev/zero of=../resource/uefi-tmp.hdd bs=512 count=91669
 mformat -i ../resource/uefi-tmp.hdd -h 32 -t 32 -n 64 -c 1
 
-## Setup fs-root
+## Setup file structure ##
 mkdir ../fs-root/core
 mkdir ../fs-root/efi/
 mkdir ../fs-root/efi/boot
-cp ../kernel/build/limine.cfg ../fs-root/limine.cfg
+cp limine.cfg ../fs-root/limine.cfg
 cp ../depend/BOOTX64.EFI ../fs-root/efi/boot/bootx64.efi
 cp kernel.make ../Makefile
+
+echo "Setup complete. Return to the root directory and run 'make' to build a distribution of OryxOS"
