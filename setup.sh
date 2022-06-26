@@ -8,6 +8,9 @@ mkdir ../resource
 ## Kernel ##
 git clone https://github.com/OryxOS/kernel ../kernel
 
+## Libraries ##
+git clone https://github.com/OryxOS/libraries ../libraries
+
 ## Limine ##
 git clone https://github.com/limine-bootloader/limine.git ../depend --branch=v2.27-binary --depth=1 
 
@@ -27,6 +30,6 @@ mkdir ../fs-root/efi/
 mkdir ../fs-root/efi/boot
 cp limine.cfg ../fs-root/limine.cfg
 cp ../depend/BOOTX64.EFI ../fs-root/efi/boot/bootx64.efi
-cp kernel.make ../Makefile
+cp project.make ../Makefile
 
 echo "Setup complete. Return to the root directory and run 'make' to build a distribution of OryxOS"
