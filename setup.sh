@@ -15,7 +15,7 @@ git clone https://github.com/OryxOS/libraries ../libraries
 git clone https://github.com/OryxOS/userland ../userland
 
 ## Limine ##
-git clone https://github.com/limine-bootloader/limine.git ../depend --branch=v2.27-binary --depth=1 
+git clone https://github.com/limine-bootloader/limine.git ../depend --branch=v3.0-branch-binary --depth=1 
 
 ## Image file ##
 dd if=/dev/zero of=../resource/oryx.hdd.part bs=512 count=131072
@@ -31,6 +31,7 @@ mformat -i ../resource/uefi-tmp.hdd -h 32 -t 32 -n 64 -c 1
 mkdir ../fs-root/core
 mkdir ../fs-root/efi/
 mkdir ../fs-root/efi/boot
+mkdir ../fs-root/applications
 cp limine.cfg ../fs-root/limine.cfg
 cp ../depend/BOOTX64.EFI ../fs-root/efi/boot/bootx64.efi
 cp project.make ../Makefile
