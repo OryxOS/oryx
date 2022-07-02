@@ -45,7 +45,14 @@ run: release-amd64
 
 clean:
 	cd kernel && make clean
+
+	cd userland/yes && make clean
+	cd userland/no && make clean
+
 	cd libraries/au && make clean
 	cd libraries/syscalls && make clean
 	cd libraries/runtime && make clean
 	cd libraries/system && make clean
+
+	rm uefi-tmp.hdd
+	rm oryx-amd64.hdd
