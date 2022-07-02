@@ -11,6 +11,9 @@ git clone https://github.com/OryxOS/kernel ../kernel
 ## Libraries ##
 git clone https://github.com/OryxOS/libraries ../libraries
 
+## Userland ##
+git clone https://github.com/OryxOS/userland ../userland
+
 ## Limine ##
 git clone https://github.com/limine-bootloader/limine.git ../depend --branch=v2.27-binary --depth=1 
 
