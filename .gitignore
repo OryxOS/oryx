@@ -17,3 +17,13 @@
 
 # Code coverage
 *.lst
+
+# Disk images
+*.part
+*.hdd
+
+# Dependencies
+deps
+
+# VS code
+.vscode
