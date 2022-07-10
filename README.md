@@ -1,4 +1,4 @@
-## What is OryxOS?
+# What is OryxOS?
 OryxOS is a non-unix, microkernel-based operating system written in D. OryxOS aims to be fast and to provide a clean and modern API.
 
 ## Features
@@ -27,7 +27,7 @@ Before building OryxOS, you need to setup the correct build environment.
 
 1. Clone this repository.
 3. Enter the folder and run ``./setup.sh``
-4. Once the setup has complete, run ``cd ../`` and then run either ``make run-kvm`` to run qemu with kvm or ``make run-tcg`` to just use qemu (``make`` uses kvm by default)
+4. Once the setup has complete, run either ``make run-kvm`` to run qemu with kvm or ``make run-tcg`` to just use qemu (``make`` uses kvm by default)
 5. If everything has worked, ``qemu`` should open and you should see OryxOS.
 
 ### Notes
