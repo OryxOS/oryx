@@ -5,11 +5,14 @@ all: run
 kernel:
 	cd kernel && make
 
-application-no:
-	cd userland/no && make
+application-shell:
+	cd userland/shell && make
 
-application-yes:
-	cd userland/yes && make
+application-count-down:
+	cd userland/count-down && make
+
+application-count-up:
+	cd userland/count-up && make
 
 libraries:
 	cd libraries/au && make
@@ -17,11 +20,12 @@ libraries:
 	cd libraries/runtime && make
 	cd libraries/system && make
 
-release-amd64: libraries kernel application-yes application-no
+release-amd64: libraries kernel application-count-up application-count-down application-shell;
 	cp kernel/kernel.elf fs-root/core/kernel.elf
 
-	cp userland/no/no.elf fs-root/applications/no.elf
-	cp userland/yes/yes.elf fs-root/applications/yes.elf
+	cp userland/count-up/count-up.elf fs-root/applications/count-up.elf
+	cp userland/count-down/count-down.elf fs-root/applications/count-down.elf
+	cp userland/shell/shell.elf fs-root/applications/shell.elf
 
 	cp resource/oryx.hdd.part oryx-amd64.hdd
 	cp resource/uefi-tmp.hdd uefi-tmp.hdd
@@ -35,8 +39,9 @@ release-amd64: libraries kernel application-yes application-no
 	mcopy -i uefi-tmp.hdd fs-root/efi/boot/bootx64.efi ::efi/boot/bootx64.efi 
 	mcopy -i uefi-tmp.hdd fs-root/limine.cfg ::limine.cfg
 
-	mcopy -i uefi-tmp.hdd fs-root/applications/no.elf ::applications/no.elf
-	mcopy -i uefi-tmp.hdd fs-root/applications/yes.elf ::applications/yes.elf
+	mcopy -i uefi-tmp.hdd fs-root/applications/count-down.elf ::applications/count-down.elf
+	mcopy -i uefi-tmp.hdd fs-root/applications/count-up.elf ::applications/count-up.elf
+	mcopy -i uefi-tmp.hdd fs-root/applications/shell.elf ::applications/shell.elf
 
 	dd if=uefi-tmp.hdd of=oryx-amd64.hdd bs=512 count=91669 seek=2048 conv=notrunc
 
@@ -46,13 +51,11 @@ run: release-amd64
 clean:
 	cd kernel && make clean
 
-	cd userland/yes && make clean
-	cd userland/no && make clean
-
 	cd libraries/au && make clean
 	cd libraries/syscalls && make clean
 	cd libraries/runtime && make clean
 	cd libraries/system && make clean
 
-	rm uefi-tmp.hdd
-	rm oryx-amd64.hdd
+	cd userland/count-up && make clean
+	cd userland/count-down && make clean
+	cd userland/shell && make clean
